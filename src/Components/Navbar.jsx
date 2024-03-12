@@ -170,15 +170,34 @@ export default function Navbar() {
               <hr />
               <div className="flex flex-col justify-center">
                 <p className="font-semibold text-[12px]"></p>
-                {categories.map((item, index) => (
-                  <Link
-                    key={index}
-                    to={item.url}
-                    className="text-1xl leading-none my-2"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {categories.map((item, index) => {
+                  if (item.label !== "Logout") {
+                    return (
+                      <Link
+                        key={index}
+                        to={item.url}
+                        className="text-1xl leading-none my-2"
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  } else {
+                    return (
+                      <Link
+                        key={index}
+                        onClick={() => {
+                          localStorage.removeItem("token");
+                          localStorage.removeItem("_id");
+                          navigate("/login");
+                        }}
+                        to={item.url}
+                        className="text-1xl leading-none my-2"
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  }
+                })}
               </div>
             </aside>
           </div>
