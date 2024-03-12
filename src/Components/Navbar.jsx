@@ -19,7 +19,7 @@ export default function Navbar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const categories = ["Home", "About", "Contact"];
+  const [categories, setCategories] = useState([]);
 
   const fetchUser = async () => {
     setShowProfile(false);
@@ -49,12 +49,29 @@ export default function Navbar() {
         { label: "Add Course", url: "/admin/create" },
         { label: "Logout", url: "/login" },
       ]);
+      setCategories([
+        { label: "Home", url: "/" },
+        { label: "About Us", url: "/about" },
+        { label: "Contact Us", url: "/contact" },
+        { label: "Profile", url: "/profile" },
+        { label: "Courses", url: "/admin/courses" },
+        { label: "Add Course", url: "/admin/create" },
+        { label: "Logout", url: "/login" },
+      ]);
     } else {
       setIsAdmin(false);
       setMenu([
         { label: "Profile", url: "/profile" },
         { label: "My Learning", url: "/myLearning" },
         { label: "Logout", url: "/login" },
+      ]);
+
+      setCategories([
+        { label: "Home", url: "/" },
+        { label: "About Us", url: "/about" },
+        { label: "Contact Us", url: "/contact" },
+        { label: "Profile", url: "/profile" },
+        { label: "My Learning", url: "/myLearning" },
       ]);
     }
   };
@@ -124,19 +141,7 @@ export default function Navbar() {
         )}
       </div>
       <div className="p-5 -mb-[4.5rem] flex justify-between items-center flex-wrap sm:hidden md:hidden lg:hidden xl:hidden">
-        <Link className="flex title-font font-medium items-center text-white md:mb-0">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
+        <Link className="flex title-font font-medium items-center text-black md:mb-0">
           <span className="ml-3 text-xl">NovoSkill</span>
         </Link>
         <HiMenuAlt3
@@ -147,10 +152,10 @@ export default function Navbar() {
       {isSidebarOpen && (
         <div
           onClick={toggleSidebar}
-          className="fixed inset-0  bg-opacity-75 z-50 sm:hidden md:hidden lg:hidden"
+          className="fixed inset-0 bg-opacity-75 z-50 sm:hidden md:hidden lg:hidden flex justify-center items-center transition-opacity duration-300 ease-linear"
         >
-          <div className="light-primary h-full w-[80%] fixed top-0 right-0 shadow-lg flex sm:hidden md:hidden lg:hidden">
-            <aside className="p-3 flex flex-col gap-3 w-full ">
+          <div className="bg-white h-full w-[80%] fixed top-0 right-0 shadow-lg flex sm:hidden md:hidden lg:hidden transform transition-transform duration-300 ease-in-out">
+            <aside className="p-3 flex flex-col gap-3 w-full">
               <div className="flex justify-between items-center">
                 <div className="flex flex-col gap-3">
                   <h6 className="text-lg font-semibold text-black">
@@ -158,24 +163,22 @@ export default function Navbar() {
                   </h6>
                 </div>
                 <HiOutlineXMark
-                  className="text-2xl color-light-accent font-bold"
+                  className="text-2xl color-light-accent font-bold cursor-pointer"
                   onClick={toggleSidebar}
                 />
               </div>
               <hr />
               <div className="flex flex-col justify-center">
                 <p className="font-semibold text-[12px]"></p>
-                {categories.map((item, index) => {
-                  return (
-                    <Link
-                      key={index}
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-1xl leading-none my-2 "
-                    >
-                      {item}
-                    </Link>
-                  );
-                })}
+                {categories.map((item, index) => (
+                  <Link
+                    key={index}
+                    to={item.url}
+                    className="text-1xl leading-none my-2"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             </aside>
           </div>
