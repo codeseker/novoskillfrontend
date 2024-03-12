@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark Mode */
+.dark-primary {
+  background-color: #2F2F2A; /* Primary color */
+  color: #FFFFFE; /* Text color for dark primary background */
+}
+
+.dark-secondary {
+  background-color: #000000; /* Secondary color */
+  color: #FFFFFE; /* Text color for dark secondary background */
+}
+
+.dark-accent {
+  color: #AFBF7A; /* Accent color */
+}
+
+/* Light Mode */
+.light-primary {
+  background-color: #FFFBF5; /* Primary color */
+  color: #000000; /* Text color for light primary background */
+}
+
+.light-secondary {
+  background-color: #F7EFE5; /* Secondary color */
+  color: #000000; /* Text color for light secondary background */
+}
+
+/* Dark Mode */
+.color-dark-primary {
+  color: #FFFFFE; /* Text color for dark primary background */
+}
+
+.color-dark-secondary {
+  color: #FFFFFE; /* Text color for dark secondary background */
+}
+
+.color-dark-accent {
+  color: #AFBF7A; /* Accent color */
+}
+
+/* Light Mode */
+.color-light-primary {
+  color: #000000; /* Text color for light primary background */
+}
+
+.color-light-secondary {
+  color: #000000; /* Text color for light secondary background */
+}
+
+.color-light-accent {
+  color: #7743DB; /* Accent color */
+}
